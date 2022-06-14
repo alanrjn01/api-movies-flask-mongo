@@ -4,12 +4,12 @@ contiene un crud(GET,POST,PUT,DELETE) para las colecciones:
 * characters
 * genres
 
-# PUT y DELETE
+## PUT y DELETE
 ambas peticiones reciben un id a partir de la cual se podrá modificar o eliminar un documento
 **coleccion = nombre de cualquiera de las 3 colecciones**
 </coleccion/id>
 
-# GET y POST
+## GET y POST
 estas peticiones no requieren de un id
 </coleccion>
 
