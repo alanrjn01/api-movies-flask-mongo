@@ -11,7 +11,7 @@ ambas peticiones reciben un id a partir de la cual se podrá modificar o elimina
 
 ## GET y POST
 estas peticiones no requieren de un id  
-*</coleccion>*
+*</coleccion>*  
 
 ### characters
 *</characters/id>*
