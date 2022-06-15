@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template,request,redirect,url_for,flash
 from flask_pymongo import PyMongo
 
 
@@ -8,6 +8,11 @@ app = Flask(__name__)
 #conexión a base de datos:
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/disneydb'
 mongo = PyMongo(app)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
 
 #error handler
 @app.errorhandler(404)

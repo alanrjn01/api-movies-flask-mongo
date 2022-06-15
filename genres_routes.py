@@ -1,4 +1,4 @@
-from flask import jsonify,request,Response,Blueprint
+from flask import jsonify, render_template,request,Response,Blueprint
 from bson import json_util
 from bson.objectid import ObjectId
 genres = Blueprint('genres', __name__)
@@ -13,7 +13,7 @@ def create_genre():
     image = request.json['image']
     if name and (movies or series):
         app.mongo.db.genres.insert_one({
-            "name":name,
+            "genre":name,
             "movies":movies,
             "series":series,
             "image":image
@@ -58,6 +58,5 @@ def delete_genre(id):
 @genres.route('/genres', methods=['GET'])
 def show_genres():
     genres = app.mongo.db.genres.find()
-    response = json_util.dumps(genres)
-    return Response(response,mimetype='application/json')
+    return render_template('genres.html', data = genres)
 

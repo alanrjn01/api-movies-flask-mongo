@@ -31,3 +31,5 @@ se indica el orden deseado por el cual se quiere listar las peliculas en base a 
 * asc = ascendente
 * desc = descendente 
 
+## HTML templates
+las url por defecto **(/characters,/movies,/genres)** devuelven un archivo HTML con todos los datos de dicha colección

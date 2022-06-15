@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import jsonify,request,Response,Blueprint
+from flask import jsonify, render_template,request,Response,Blueprint
 from bson import json_util
 from bson.objectid import ObjectId
 import pymongo
@@ -69,8 +69,7 @@ def delete_movies(id):
 @movies.route('/movies', methods=['GET'])
 def show_movies():
     movies= app.mongo.db.movies.find({},{"title":1,"creation_date":1,"image":1})
-    response = json_util.dumps(movies)
-    return Response(response,mimetype='application/json')
+    return render_template('movies.html', data = movies)
 
 #método GET: obtiene los datos de una pelicula por id
 @movies.route('/movies/<id>', methods=['GET'])

@@ -1,4 +1,4 @@
-from flask import jsonify,request,Response,Blueprint
+from flask import jsonify, render_template,request,Response,Blueprint
 from bson import json_util
 from bson.objectid import ObjectId
 import pymongo
@@ -21,7 +21,7 @@ def create_character():
     movies = request.json['movies']
     series = request.json['series']
     image = request.json['image']
-    if name and movies and series:
+    if name and (movies or series):
         app.mongo.db.characters.insert_one({
             "name":name,
             "age":age,
@@ -72,7 +72,7 @@ def update_character(id):
 @characters.route('/characters/<id>', methods=['DELETE'])
 def delete_character(id):
     #.recibo por url la id del personaje a eliminar y realizo la petición en la db
-    app.mongo.db.characters.delete_one({'id':ObjectId(id)})
+    app.mongo.db.characters.delete_one({'_id':ObjectId(id)})
     response = jsonify({
         'message':'Character ' + id + ' was deleted succesfully'
     })
@@ -87,8 +87,7 @@ def show_characters():
     #.retorno una instancia de la clase Response con la variable
     #'response' y el mimetype de application/json
     characters = app.mongo.db.characters.find({},{"name":1,"image":1,"_id":0}).sort("name",pymongo.ASCENDING)
-    response = json_util.dumps(characters)
-    return Response(response,mimetype='application/json')
+    return render_template('characters.html', data = characters)
 
 #método GET: obtiene todos los datos de un personaje en particular
 @characters.route('/characters/<id>', methods=['GET'])

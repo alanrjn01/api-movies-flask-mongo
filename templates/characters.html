@@ -1,0 +1,17 @@
+{%extends 'collection_layout.html'%}
+{%block body%}
+<h1>Characters</h1>
+<table>
+    <thead>
+        <tr>
+            <td>name</td>
+        </tr>
+    </thead>
+    <tbody>
+    {%for character in data%}
+        <tr>
+            <td>{{character["name"]}}</td>
+        </tr>        
+    {%endfor%}
+    </tbody>
+{%endblock%}

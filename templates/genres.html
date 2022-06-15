@@ -1,0 +1,18 @@
+{%extends 'collection_layout.html'%}
+{%block body%}
+<h1>Genres</h1>
+<table>
+    <thead>
+        <tr>
+            <td>name</td>
+        </tr>
+    </thead>
+    <tbody>
+    {%for genre in data%}
+        <tr>
+            <td>{{genre["name"]}}</td>
+        </tr>        
+    {%endfor%}
+    </tbody>
+    
+{%endblock%}
